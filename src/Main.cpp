@@ -1,11 +1,11 @@
 #include <RED4ext/RED4ext.hpp>
 
-RED4EXT_C_EXPORT bool RED4EXT_CALL Main(RED4ext::PluginHandle aHandle, RED4ext::EMainReason aReason,
-                                        const RED4ext::Sdk* aSdk)
+RED4EXT_C_EXPORT bool RED4EXT_CALL Main(RED4ext::v1::PluginHandle aHandle, RED4ext::v1::EMainReason aReason,
+                                        const RED4ext::v1::Sdk* aSdk)
 {
     switch (aReason)
     {
-    case RED4ext::EMainReason::Load:
+    case RED4ext::v1::EMainReason::Load:
     {
         /*
          * Here you can register your custom functions, initalize variable, create hooks and so on.
@@ -19,7 +19,7 @@ RED4EXT_C_EXPORT bool RED4EXT_CALL Main(RED4ext::PluginHandle aHandle, RED4ext::
 
         break;
     }
-    case RED4ext::EMainReason::Unload:
+    case RED4ext::v1::EMainReason::Unload:
     {
         /*
          * Here you can free resources you allocated during initalization or during the time your plugin was executed.
@@ -35,7 +35,7 @@ RED4EXT_C_EXPORT bool RED4EXT_CALL Main(RED4ext::PluginHandle aHandle, RED4ext::
     return true;
 }
 
-RED4EXT_C_EXPORT void RED4EXT_CALL Query(RED4ext::PluginInfo* aInfo)
+RED4EXT_C_EXPORT void RED4EXT_CALL Query(RED4ext::v1::PluginInfo* aInfo)
 {
     /*
      * This function supply the necessary information about your plugin, like name, version, support runtime and SDK. DO
@@ -55,9 +55,9 @@ RED4EXT_C_EXPORT void RED4EXT_CALL Query(RED4ext::PluginInfo* aInfo)
 
     aInfo->name = L"RED4ext.Example.CMake";
     aInfo->author = L"WopsS";
-    aInfo->version = RED4EXT_SEMVER(1, 0, 0);
-    aInfo->runtime = RED4EXT_RUNTIME_LATEST;
-    aInfo->sdk = RED4EXT_SDK_LATEST;
+    aInfo->version = RED4EXT_V1_SEMVER(1, 0, 0);
+    aInfo->runtime = RED4EXT_V1_RUNTIME_VERSION_LATEST;
+    aInfo->sdk = RED4EXT_V1_SDK_VERSION_CURRENT;
 }
 
 RED4EXT_C_EXPORT uint32_t RED4EXT_CALL Supports()
@@ -68,5 +68,5 @@ RED4EXT_C_EXPORT uint32_t RED4EXT_CALL Supports()
      *
      * For more information about this function see https://docs.red4ext.com/mod-developers/creating-a-plugin#supports.
      */
-    return RED4EXT_API_VERSION_LATEST;
+    return RED4EXT_API_VERSION_1;
 }
